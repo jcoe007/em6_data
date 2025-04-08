@@ -55,6 +55,7 @@ def main():
     most_recent = max(items, key=lambda r: pd.to_datetime(r.get("trading_date")))
     record = flatten_record(most_recent)
     record["trading_date"] = pd.to_datetime(record["trading_date"]).isoformat()
+    record["run_time"] = datetime.now(ZoneInfo("Pacific/Auckland")).isoformat()
 
     # --- Connect to Supabase ---
     conn = psycopg2.connect(
